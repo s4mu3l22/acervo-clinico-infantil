@@ -3,7 +3,7 @@
  * Painel Administrativo com Basic Auth e Visualização das Métricas do Funil
  */
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // 1. Basic Auth Verification
   const authHeader = req.headers.authorization;
   const adminUser = process.env.ADMIN_USER || 'admin';

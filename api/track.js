@@ -3,14 +3,13 @@
  * Recebe eventos do funil e persiste no Vercel KV / Upstash Redis
  */
 
-// Fallback em memória para quando KV ainda não estiver configurado
 const fallbackStore = {
   counts: {},
   leads: new Set(),
   recentEvents: []
 };
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Configurar CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -50,7 +49,6 @@ export default async function handler(req, res) {
     const kvToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
 
     if (kvUrl && kvToken) {
-      // Pipeline Upstash / Vercel KV REST API
       const pipeline = [
         ["HINCRBY", "aci:funnel:counts", event, "1"],
         ["HINCRBY", "aci:funnel:counts", "total_events", "1"],
@@ -71,7 +69,6 @@ export default async function handler(req, res) {
 
       return res.status(200).json({ ok: true, stored: 'kv' });
     } else {
-      // Armazenamento de contingência em memória
       fallbackStore.counts[event] = (fallbackStore.counts[event] || 0) + 1;
       fallbackStore.counts['total_events'] = (fallbackStore.counts['total_events'] || 0) + 1;
       if (sessionId) fallbackStore.leads.add(sessionId);
@@ -84,4 +81,4 @@ export default async function handler(req, res) {
     console.error('Track error:', error);
     return res.status(200).json({ ok: false, error: error.message });
   }
-}
+};
