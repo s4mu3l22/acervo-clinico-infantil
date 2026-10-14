@@ -31,24 +31,16 @@
     };
 
     try {
-      var blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
-      if (navigator.sendBeacon) {
-        navigator.sendBeacon('/api/track', blob);
-      } else {
-        fetch('/api/track', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          keepalive: true
-        }).catch(function(){});
-      }
-    } catch(err) {
-      // Fallback fetch
       fetch('/api/track', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      }).catch(function(){});
+        body: JSON.stringify(payload),
+        keepalive: true
+      }).catch(function(err) {
+        console.warn('[Tracker] Send error:', err);
+      });
+    } catch(err) {
+      console.warn('[Tracker] Fetch error:', err);
     }
   }
 

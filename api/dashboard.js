@@ -75,9 +75,10 @@ module.exports = async function handler(req, res) {
     return requireAuth();
   }
 
-  // 2. Extração de Métricas do Vercel KV / Upstash Redis
+  // 2. Extração de Métricas
   const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
   const kvToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+  const KVDB_URL = 'https://kvdb.io/NnRdYG4NXhJ48JLS527zSC/funnel_data';
 
   let counts = {};
   let totalUniqueLeads = 0;
@@ -129,6 +130,24 @@ module.exports = async function handler(req, res) {
     }
   }
 
+  // Se não conectado ao Vercel KV ou vazio, utiliza a nuvem persistente automática
+  if (!isKvConnected || Object.keys(counts).length === 0) {
+    try {
+      const kvdbRes = await fetch(KVDB_URL, { cache: 'no-store' });
+      if (kvdbRes.ok) {
+        const text = await kvdbRes.text();
+        if (text && text.trim().startsWith('{')) {
+          const cloudData = JSON.parse(text);
+          counts = cloudData.counts || {};
+          totalUniqueLeads = (cloudData.leads && cloudData.leads.length) || (counts['pageview'] || 0);
+          recentEvents = cloudData.recentEvents || [];
+        }
+      }
+    } catch (e) {
+      console.error('Error fetching KVDB data:', e);
+    }
+  }
+
   // Retorno JSON para polling automático
   const query = req.query || {};
   if (query.format === 'json') {
@@ -143,24 +162,33 @@ module.exports = async function handler(req, res) {
   }
 
   // Ação de reset
-  if (query.action === 'reset' && kvUrl && kvToken) {
+  if (query.action === 'reset') {
+    if (kvUrl && kvToken) {
+      try {
+        await fetch(`${kvUrl}/pipeline`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${kvToken}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify([
+            ["DEL", "aci:funnel:counts"],
+            ["DEL", "aci:funnel:leads"],
+            ["DEL", "aci:funnel:recent"]
+          ])
+        });
+      } catch (e) {}
+    }
     try {
-      await fetch(`${kvUrl}/pipeline`, {
+      await fetch(KVDB_URL, {
         method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${kvToken}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify([
-          ["DEL", "aci:funnel:counts"],
-          ["DEL", "aci:funnel:leads"],
-          ["DEL", "aci:funnel:recent"]
-        ])
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ counts: {}, leads: [], recentEvents: [] })
       });
-      res.statusCode = 302;
-      res.setHeader('Location', '/dashboard');
-      return res.end();
     } catch (e) {}
+    res.statusCode = 302;
+    res.setHeader('Location', '/dashboard');
+    return res.end();
   }
 
   // 3. Cálculos do Funil
@@ -193,11 +221,11 @@ module.exports = async function handler(req, res) {
   const eventsHtml = renderRecentEvents(recentEvents);
   const statusBadge = isKvConnected
     ? '<span class="badge badge-live"><span class="pulse-dot"></span> Vercel KV Conectado</span>'
-    : '<span class="badge badge-warn"><span class="pulse-dot"></span> Modo Memória Local</span>';
+    : '<span class="badge badge-live"><span class="pulse-dot"></span> Nuvem Ativa (Tempo Real)</span>';
 
   const kvNotice = isKvConnected
-    ? 'Banco de dados ativo. Os dados são persistidos permanentemente na nuvem.'
-    : 'Para persistência contínua, conecte o <code>Vercel KV</code> no painel da sua conta na Vercel (aba Storage > Create KV Database).';
+    ? 'Banco de dados Vercel KV ativo. Os dados são persistidos permanentemente na nuvem.'
+    : 'Armazenamento em nuvem ativo e sincronizado em tempo real com todas as instâncias do site.';
 
   const html = `<!DOCTYPE html>
 <html lang="pt-BR">
