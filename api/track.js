@@ -9,6 +9,12 @@ const fallbackStore = {
   recentEvents: []
 };
 
+function sendJson(res, statusCode, data) {
+  res.statusCode = statusCode;
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify(data));
+}
+
 module.exports = async function handler(req, res) {
   // Configurar CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -16,11 +22,12 @@ module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') {
-    return res.status(200).end();
+    res.statusCode = 200;
+    return res.end();
   }
 
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return sendJson(res, 405, { error: 'Method not allowed' });
   }
 
   try {
@@ -32,7 +39,7 @@ module.exports = async function handler(req, res) {
     const { sessionId, event, timestamp, referrer, screen, metadata } = body || {};
 
     if (!event) {
-      return res.status(400).json({ error: 'Event name is required' });
+      return sendJson(res, 400, { error: 'Event name is required' });
     }
 
     const eventRecord = {
@@ -67,7 +74,7 @@ module.exports = async function handler(req, res) {
         body: JSON.stringify(pipeline)
       });
 
-      return res.status(200).json({ ok: true, stored: 'kv' });
+      return sendJson(res, 200, { ok: true, stored: 'kv' });
     } else {
       fallbackStore.counts[event] = (fallbackStore.counts[event] || 0) + 1;
       fallbackStore.counts['total_events'] = (fallbackStore.counts['total_events'] || 0) + 1;
@@ -75,10 +82,10 @@ module.exports = async function handler(req, res) {
       fallbackStore.recentEvents.unshift(eventRecord);
       if (fallbackStore.recentEvents.length > 50) fallbackStore.recentEvents.pop();
 
-      return res.status(200).json({ ok: true, stored: 'fallback' });
+      return sendJson(res, 200, { ok: true, stored: 'fallback' });
     }
   } catch (error) {
     console.error('Track error:', error);
-    return res.status(200).json({ ok: false, error: error.message });
+    return sendJson(res, 200, { ok: false, error: error.message });
   }
 };

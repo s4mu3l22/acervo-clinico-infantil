@@ -3,6 +3,42 @@
  * Painel Administrativo com Basic Auth e Visualização das Métricas do Funil
  */
 
+function renderRecentEvents(events) {
+  if (!events || events.length === 0) {
+    return '<p style="color:var(--muted);font-size:13px;text-align:center;padding:40px 0;">Nenhum evento registrado ainda.<br>Acesse o site para começar a gerar métricas.</p>';
+  }
+  return events.map(function(e) {
+    let icon = '👀';
+    let label = e.event;
+    let color = 'rgba(148, 163, 184, 0.15)';
+
+    if (e.event === 'pageview') { icon = '🌐'; label = 'Acessou o site'; color = 'rgba(42, 157, 143, 0.2)'; }
+    else if (e.event && e.event.indexOf('scroll_') === 0) { icon = '📜'; label = 'Rolou a página até ' + e.event.replace('scroll_', '') + '%'; color = 'rgba(59, 130, 246, 0.2)'; }
+    else if (e.event === 'click_video_demo') { icon = '▶️'; label = 'Assistiu ao vídeo de demonstração'; color = 'rgba(168, 85, 247, 0.2)'; }
+    else if (e.event === 'view_section_pricing') { icon = '🏷️'; label = 'Visualizou a seção de preços'; color = 'rgba(245, 158, 11, 0.2)'; }
+    else if (e.event === 'click_basic_cta') { icon = '🛒'; label = 'Clicou no botão do Acervo Básico'; color = 'rgba(245, 158, 11, 0.25)'; }
+    else if (e.event === 'upsell_opened') { icon = '🎁'; label = 'Abriu o pop-up de Upsell'; color = 'rgba(245, 158, 11, 0.3)'; }
+    else if (e.event === 'upsell_accepted') { icon = '🔥'; label = 'Aceitou o Upsell de R$ 9,90!'; color = 'rgba(16, 185, 129, 0.3)'; }
+    else if (e.event === 'upsell_declined') { icon = '❌'; label = 'Recusou o Upsell (manteve o simples)'; color = 'rgba(239, 68, 68, 0.2)'; }
+    else if (e.event === 'click_featured_cta') { icon = '💎'; label = 'Clicou no Acervo Completo (R$ 37,90)'; color = 'rgba(16, 185, 129, 0.25)'; }
+    else if (e.event === 'click_hero_cta') { icon = '👆'; label = 'Clicou no CTA do topo (Hero)'; color = 'rgba(42, 157, 143, 0.2)'; }
+    else if (e.event === 'click_faq') { icon = '❓'; label = 'Leu dúvida no FAQ: ' + (e.meta && e.meta.question ? e.meta.question.substring(0, 30) + '...' : ''); color = 'rgba(148, 163, 184, 0.2)'; }
+
+    const timeStr = new Date(e.time || Date.now()).toLocaleTimeString('pt-BR');
+    const screenStr = e.screen ? ' • ' + e.screen : '';
+    const refStr = e.ref && e.ref !== 'direto' ? ' • ref: ' + e.ref : '';
+
+    return '<div class="event-item">' +
+      '<div class="event-icon" style="background:' + color + ';">' + icon + '</div>' +
+      '<div class="event-info">' +
+        '<div class="event-lead">' + (e.sessionId || 'anon') + screenStr + '</div>' +
+        '<div class="event-desc">' + label + '</div>' +
+        '<div class="event-time">' + timeStr + refStr + '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
 module.exports = async function handler(req, res) {
   // 1. Basic Auth Verification
   const authHeader = req.headers.authorization;
@@ -10,17 +46,17 @@ module.exports = async function handler(req, res) {
   const adminPass = process.env.ADMIN_PASS || 'acervo2026';
 
   function requireAuth() {
+    res.statusCode = 401;
     res.setHeader('WWW-Authenticate', 'Basic realm="Acesso Restrito - Dashboard Funil Acervo Clinico"');
-    res.status(401).send(`
-      <!DOCTYPE html>
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.end(`<!DOCTYPE html>
       <html>
       <head><title>Acesso Restrito</title></head>
       <body style="font-family:sans-serif;text-align:center;padding:50px;background:#0f172a;color:#fff;">
         <h2>Acesso Restrito</h2>
         <p>Você precisa de usuário e senha válidos para visualizar este dashboard.</p>
       </body>
-      </html>
-    `);
+      </html>`);
   }
 
   if (!authHeader || !authHeader.startsWith('Basic ')) {
@@ -68,7 +104,6 @@ module.exports = async function handler(req, res) {
       if (kvRes.ok) {
         const [countsData, scardData, recentData] = await kvRes.json();
         
-        // Formatar HGETALL (array de pares [key, value, key, value] ou objeto)
         if (Array.isArray(countsData.result)) {
           for (let i = 0; i < countsData.result.length; i += 2) {
             counts[countsData.result[i]] = parseInt(countsData.result[i + 1], 10) || 0;
@@ -94,18 +129,21 @@ module.exports = async function handler(req, res) {
     }
   }
 
-  // Se a rota receber ?format=json, retorna os dados puros para polling
-  if (req.query.format === 'json') {
-    return res.status(200).json({
+  // Retorno JSON para polling automático
+  const query = req.query || {};
+  if (query.format === 'json') {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    return res.end(JSON.stringify({
       isKvConnected,
       totalUniqueLeads,
       counts,
       recentEvents
-    });
+    }));
   }
 
-  // Se for requisitado reset:
-  if (req.query.action === 'reset' && kvUrl && kvToken) {
+  // Ação de reset
+  if (query.action === 'reset' && kvUrl && kvToken) {
     try {
       await fetch(`${kvUrl}/pipeline`, {
         method: 'POST',
@@ -119,7 +157,9 @@ module.exports = async function handler(req, res) {
           ["DEL", "aci:funnel:recent"]
         ])
       });
-      return res.redirect('/dashboard');
+      res.statusCode = 302;
+      res.setHeader('Location', '/dashboard');
+      return res.end();
     } catch (e) {}
   }
 
@@ -150,6 +190,15 @@ module.exports = async function handler(req, res) {
   }
 
   // 4. Renderização do HTML do Dashboard
+  const eventsHtml = renderRecentEvents(recentEvents);
+  const statusBadge = isKvConnected
+    ? '<span class="badge badge-live"><span class="pulse-dot"></span> Vercel KV Conectado</span>'
+    : '<span class="badge badge-warn"><span class="pulse-dot"></span> Modo Memória Local</span>';
+
+  const kvNotice = isKvConnected
+    ? 'Banco de dados ativo. Os dados são persistidos permanentemente na nuvem.'
+    : 'Para persistência contínua, conecte o <code>Vercel KV</code> no painel da sua conta na Vercel (aba Storage > Create KV Database).';
+
   const html = `<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -379,10 +428,7 @@ module.exports = async function handler(req, res) {
         <p>Painel de rastreamento de comportamento e conversão em tempo real</p>
       </div>
       <div class="header-actions">
-        ${isKvConnected
-          ? '<span class="badge badge-live"><span class="pulse-dot"></span> Vercel KV Conectado</span>'
-          : '<span class="badge badge-warn"><span class="pulse-dot"></span> Modo Memória Local</span>'
-        }
+        ${statusBadge}
         <button onclick="location.reload()" class="btn-action">🔄 Atualizar</button>
         <a href="/api/dashboard?action=reset" onclick="return confirm('Deseja realmente zerar todos os dados do funil?')" class="btn-action" style="color:var(--red);">🗑️ Zerar Métricas</a>
       </div>
@@ -524,37 +570,7 @@ module.exports = async function handler(req, res) {
         </div>
 
         <div class="events-feed">
-          ${recentEvents.length === 0 ? '<p style="color:var(--muted);font-size:13px;text-align:center;padding:40px 0;">Nenhum evento registrado ainda.<br>Acesse o site para começar a gerar métricas.</p>' : ''}
-          ${recentEvents.map(e => {
-            let icon = '👀';
-            let label = e.event;
-            let color = 'rgba(148, 163, 184, 0.15)';
-
-            if (e.event === 'pageview') { icon = '🌐'; label = 'Acessou o site'; color = 'rgba(42, 157, 143, 0.2)'; }
-            else if (e.event.startsWith('scroll_')) { icon = '📜'; label = 'Rolou a página até ' + e.event.replace('scroll_', '') + '%'; color = 'rgba(59, 130, 246, 0.2)'; }
-            else if (e.event === 'click_video_demo') { icon = '▶️'; label = 'Assistiu ao vídeo de demonstração'; color = 'rgba(168, 85, 247, 0.2)'; }
-            else if (e.event === 'view_section_pricing') { icon = '🏷️'; label = 'Visualizou a seção de preços'; color = 'rgba(245, 158, 11, 0.2)'; }
-            else if (e.event === 'click_basic_cta') { icon = '🛒'; label = 'Clicou no botão do Acervo Básico'; color = 'rgba(245, 158, 11, 0.25)'; }
-            else if (e.event === 'upsell_opened') { icon = '🎁'; label = 'Abriu o pop-up de Upsell'; color = 'rgba(245, 158, 11, 0.3)'; }
-            else if (e.event === 'upsell_accepted') { icon = '🔥'; label = 'Aceitou o Upsell de R$ 9,90!'; color = 'rgba(16, 185, 129, 0.3)'; }
-            else if (e.event === 'upsell_declined') { icon = '❌'; label = 'Recusou o Upsell (manteve o simples)'; color = 'rgba(239, 68, 68, 0.2)'; }
-            else if (e.event === 'click_featured_cta') { icon = '💎'; label = 'Clicou no Acervo Completo (R$ 37,90)'; color = 'rgba(16, 185, 129, 0.25)'; }
-            else if (e.event === 'click_hero_cta') { icon = '👆'; label = 'Clicou no CTA do topo (Hero)'; color = 'rgba(42, 157, 143, 0.2)'; }
-            else if (e.event === 'click_faq') { icon = '❓'; label = 'Leu dúvida no FAQ: ' + (e.meta && e.meta.question ? e.meta.question.substring(0, 30) + '...' : ''); color = 'rgba(148, 163, 184, 0.2)'; }
-
-            const timeStr = new Date(e.time).toLocaleTimeString('pt-BR');
-
-            return \`
-              <div class="event-item">
-                <div class="event-icon" style="background:\${color};">\${icon}</div>
-                <div class="event-info">
-                  <div class="event-lead">\${e.sessionId} \${e.screen ? '• ' + e.screen : ''}</div>
-                  <div class="event-desc">\${label}</div>
-                  <div class="event-time">\${timeStr} \${e.ref && e.ref !== 'direto' ? '• ref: ' + e.ref : ''}</div>
-                </div>
-              </div>
-            \`;
-          }).join('')}
+          ${eventsHtml}
         </div>
       </div>
     </div>
@@ -563,10 +579,7 @@ module.exports = async function handler(req, res) {
     <div class="notice-box">
       <div>
         <strong>Conexão Vercel KV / Upstash:</strong>
-        ${isKvConnected 
-          ? 'Banco de dados ativo. Os dados são persistidos permanentemente na nuvem.'
-          : 'Para persistência contínua, conecte o <code>Vercel KV</code> no painel da sua conta na Vercel (aba Storage > Create KV Database).'
-        }
+        ${kvNotice}
       </div>
       <div>
         <span>Rota protegida por <strong>Basic Auth</strong> (admin / acervo2026)</span>
@@ -604,9 +617,9 @@ module.exports = async function handler(req, res) {
     }, 8000);
   </script>
 </body>
-</html>
-  `;
+</html>`;
 
+  res.statusCode = 200;
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  return res.status(200).send(html);
-}
+  return res.end(html);
+};
