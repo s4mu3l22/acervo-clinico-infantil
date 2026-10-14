@@ -1,0 +1,5 @@
+# Vídeos grandes e arquivos locais
+*.mp4
+server.ps1
+.DS_Store
+Thumbs.db

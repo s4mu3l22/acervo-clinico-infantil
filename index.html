@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acervo Clínico Infantil — Recursos Terapêuticos para Psicólogas</title>
+  <meta name="description" content="+160 recursos terapêuticos com objetivos clínicos e instruções de uso para psicólogas que atendem crianças. Planeje suas sessões em minutos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" type="image/png" href="images/acervo-mockup-completo.png" fetchpriority="high" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal: #2A9D8F;
+      --teal-dark: #20786C;
+      --teal-light: #E8F5F3;
+      --peach: #F4A261;
+      --red: #E63946;
+      --bg: #FAF9F6;
+      --bg-alt: #F5F0EB;
+      --dark: #2B2D42;
+      --body: #4A4A5A;
+      --muted: #7F8C9B;
+      --white: #FDFDFD;
+      --gold: #FDCB6E;
+      --green-ok: #27AE60;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg);
+      color: var(--body);
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img, svg, video, iframe {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    a { text-decoration: none; color: inherit; }
+    button, .btn, a, .faq-question, .modal-close {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* ===================== UTILITIES ===================== */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 80px 0; }
+    .section-alt { background-color: var(--bg-alt); }
+    .section-white { background-color: var(--white); }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .tag-teal { background: var(--teal-light); color: var(--teal-dark); border: 1px solid rgba(42,157,143,0.3); }
+    .tag-red { background: var(--red); color: #fff; }
+    .tag-peach { background: linear-gradient(135deg, var(--peach), #E17B3C); color: #fff; }
+
+    .section-label {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .section-headline {
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 700;
+      color: var(--dark);
+      text-align: center;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .section-headline span { color: var(--teal); }
+    .section-sub {
+      font-size: 15px;
+      color: var(--body);
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 48px;
+      line-height: 1.6;
+    }
+
+    /* CTA Buttons */
+    .btn {
+      display: inline-block;
+      padding: 16px 38px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      text-align: center;
+      border: none;
+    }
+    .btn-primary {
+      background-color: var(--teal);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(42,157,143,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(42,157,143,0.45); }
+    .btn-white {
+      background-color: #fff;
+      color: var(--teal);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+    .btn-full { width: 100%; display: block; }
+    .btn-center { display: block; width: fit-content; margin: 0 auto; }
+
+    /* Trust seals */
+    .seals {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .seal {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .seal i { width: 16px; height: 16px; }
+
+    /* Check list */
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .check-list li i { flex-shrink: 0; color: var(--green-ok); margin-top: 2px; width: 18px; height: 18px; }
+
+    /* ===================== URGENCY BAR ===================== */
+    #urgency-bar {
+      background-color: var(--red);
+      color: #fff;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    /* ===================== HERO ===================== */
+    #hero {
+      background-color: var(--white);
+      padding: 40px 0 56px;
+    }
+    #hero .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    #hero .hero-tag { margin-bottom: 16px; }
+    #hero h2 {
+      font-size: clamp(26px, 5vw, 40px);
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.22;
+      max-width: 800px;
+      margin-bottom: 18px;
+    }
+    #hero h2 span { color: var(--teal); }
+    #hero .hero-sub {
+      font-size: clamp(15px, 2.8vw, 17px);
+      color: var(--body);
+      max-width: 720px;
+      margin-bottom: 32px;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+    .hero-mockup {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      object-fit: contain;
+      margin: 0 auto 32px;
+      animation: pulse-suave 3.8s ease-in-out infinite;
+      filter: drop-shadow(0 14px 28px rgba(42,157,143,0.20));
+      transform-origin: center center;
+      will-change: transform, filter;
+    }
+    @keyframes pulse-suave {
+      0% {
+        transform: translateY(0px) scale(1);
+        filter: drop-shadow(0 12px 24px rgba(42, 157, 143, 0.18));
+      }
+      50% {
+        transform: translateY(-8px) scale(1.028);
+        filter: drop-shadow(0 22px 38px rgba(42, 157, 143, 0.30));
+      }
+      100% {
+        transform: translateY(0px) scale(1);
+        filter: drop-shadow(0 12px 24px rgba(42, 157, 143, 0.18));
+      }
+    }
+    .hero-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+      text-align: left;
+      max-width: 680px;
+      width: 100%;
+      background: var(--bg-alt);
+      padding: 20px 24px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .hero-bullet {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.4;
+    }
+    .hero-bullet i { color: var(--teal); width: 16px; height: 16px; flex-shrink: 0; }
+    .hero-cta-block { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 100%; }
+    .hero-cta-block .btn { font-size: 17px; padding: 18px 48px; }
+    .hero-price-note {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .hero-price-note span { display: flex; align-items: center; gap: 6px; }
+    .hero-price-note span i { width: 15px; height: 15px; color: var(--teal); }
+
+    /* ===================== DEMO / PREVIEW ===================== */
+    #preview {
+      background: var(--bg-alt);
+      padding: 72px 0;
+    }
+    .demo-step-card {
+      flex: 1;
+      min-width: 180px;
+      max-width: 210px;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 8px;
+    }
+    .demo-step-num {
+      width: 44px;
+      height: 44px;
+      background: var(--teal);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    /* ===================== CATEGORIES (DORES) ===================== */
+    #categories { padding: 80px 0; background: var(--white); }
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+    .category-item {
+      background: var(--bg-alt);
+      border-radius: 12px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--dark);
+      border: 1px solid rgba(0,0,0,0.05);
+      line-height: 1.4;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .category-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    }
+    .category-item i { color: var(--teal); flex-shrink: 0; width: 22px; height: 22px; }
+
+    /* ===================== URGENCY BLOCK ===================== */
+    #urgency-block {
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      padding: 72px 0;
+      text-align: center;
+      color: #fff;
+    }
+    #urgency-block h2 {
+      font-size: clamp(22px, 4vw, 34px);
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+    #urgency-block h2 span { color: var(--gold); }
+    #urgency-block p {
+      font-size: 16px;
+      max-width: 680px;
+      margin: 0 auto 32px;
+      opacity: 0.94;
+      line-height: 1.7;
+    }
+    #urgency-block .seals .seal { color: rgba(255,255,255,0.85); }
+
+    /* ===================== DEPOIMENTOS ===================== */
+    #testimonials { padding: 80px 0 32px; background: var(--white); }
+    .t-carousel-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .t-track-wrapper { flex: 1; overflow: hidden; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 2px solid var(--bg-alt); }
+    .t-track { display: flex; transition: transform .45s cubic-bezier(.4,0,.2,1); }
+    .t-slide { min-width: 100%; background: #000; }
+    .t-img {
+      width: 100%;
+      max-height: 520px;
+      object-fit: contain;
+      display: block;
+    }
+    .t-arrow {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 2px solid var(--teal);
+      background: #fff;
+      color: var(--teal);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s;
+      font-size: 20px;
+      line-height: 1;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .t-arrow:hover { background: var(--teal); color: #fff; transform: scale(1.05); }
+    .t-dots {
+      display: flex; justify-content: center; gap: 8px;
+      margin-bottom: 40px;
+    }
+    .t-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #d0d8df;
+      border: none; cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .t-dot.active { background: var(--teal); transform: scale(1.3); }
+
+    /* ===================== VALUE STACK ===================== */
+    #value-stack { padding: 60px 0 80px; background: var(--white); }
+    .value-stack-inner {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 56px;
+      background: var(--bg-alt);
+      padding: 36px 32px;
+      border-radius: 20px;
+    }
+    .value-mockup {
+      width: 360px;
+      min-width: 320px;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 24px rgba(42,157,143,0.18));
+      animation: none !important;
+    }
+    .value-content { flex: 1; }
+    .value-content h2 {
+      font-size: clamp(22px, 3.5vw, 30px);
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    .value-content h2 span { color: var(--teal); }
+    .bonus-transition {
+      margin-top: 36px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .bonus-transition p {
+      font-size: 16px;
+      color: var(--body);
+      max-width: 680px;
+      margin: 0 auto 16px;
+      line-height: 1.6;
+    }
+    .bonus-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .bonus-card {
+      background: var(--bg-alt);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .bonus-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .bonus-img {
+      flex-shrink: 0;
+      width: 90px;
+      height: auto;
+      object-fit: contain;
+    }
+    .bonus-body { flex: 1; }
+    .bonus-card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .bonus-card p {
+      font-size: 13px;
+      color: var(--body);
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .bonus-price {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .bonus-price .old { font-size: 12px; color: var(--red); text-decoration: line-through; }
+    .bonus-price .free { font-size: 13.5px; font-weight: 800; color: var(--green-ok); }
+
+    /* ===================== RECAP DE VALOR ===================== */
+    #recap-valor {
+      background: var(--bg-alt);
+      padding: 72px 0;
+    }
+
+    /* ===================== PRICING ===================== */
+    #pricing { padding: 80px 0; background: var(--bg); }
+    .pricing-header { text-align: center; margin-bottom: 12px; }
+    .pricing-grid {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 32px;
+      margin: 0 auto 36px;
+      max-width: 1040px;
+      flex-wrap: wrap;
+    }
+    .pricing-card {
+      border-radius: 20px;
+      position: relative;
+      text-align: center;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+    .pricing-card.basic {
+      background: var(--white);
+      border: 1.5px solid rgba(0,0,0,0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      padding: 36px 30px;
+      max-width: 480px;
+      flex: 1 1 380px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .pricing-card.basic:hover {
+      box-shadow: 0 14px 36px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+    .pricing-card.basic .plan-name {
+      color: var(--dark);
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .pricing-card.basic .plan-sub {
+      font-size: 13.5px;
+      color: var(--body);
+      line-height: 1.45;
+      margin-bottom: 22px;
+    }
+    .pricing-card.basic .price-block {
+      background: var(--bg-alt);
+      border-radius: 14px;
+      padding: 20px 16px;
+      margin-bottom: 22px;
+    }
+    .pricing-card.basic .price-main {
+      color: var(--teal-dark);
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1;
+      margin: 4px 0;
+    }
+    .pricing-card.basic .price-main sup {
+      font-size: 22px;
+      vertical-align: super;
+    }
+    .pricing-card.basic .price-meta {
+      font-size: 12.5px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .pricing-card.basic .btn-outline {
+      background: var(--teal-light);
+      color: var(--teal-dark);
+      border: 2px solid var(--teal);
+      font-size: 16px;
+      font-weight: 700;
+      padding: 16px 20px;
+      border-radius: 50px;
+      transition: all 0.25s ease;
+      margin-bottom: 24px;
+      display: block;
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+    }
+    .pricing-card.basic .btn-outline:hover {
+      background: var(--teal);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .pricing-card.basic .pricing-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+      margin-top: auto;
+    }
+    .pricing-card.basic .pricing-items li {
+      font-size: 13.5px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.4;
+      color: var(--body);
+    }
+    .pricing-card.basic .pricing-items li.included i {
+      color: var(--teal);
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .pricing-card.basic .pricing-items li.excluded {
+      color: #8C96A5;
+    }
+    .pricing-card.basic .pricing-items li.excluded i {
+      color: var(--red);
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .pricing-card.basic .pricing-items li.excluded .strikethrough-red {
+      text-decoration: line-through;
+      text-decoration-color: var(--red);
+      text-decoration-thickness: 1.5px;
+      color: #8C96A5;
+    }
+    .pricing-card.basic .pricing-items li.excluded .strike-price {
+      color: var(--red);
+      font-weight: 700;
+      font-size: 12px;
+      margin-left: auto;
+      text-decoration: line-through;
+      text-decoration-color: var(--red);
+      white-space: nowrap;
+    }
+    .pricing-card.featured {
+      background: linear-gradient(155deg, var(--teal) 0%, var(--teal-dark) 100%);
+      border-radius: 20px;
+      padding: 36px 32px;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(42,157,143,0.35);
+      max-width: 500px;
+      flex: 1 1 420px;
+      width: 100%;
+      text-align: center;
+      border: 3px solid rgba(255,255,255,0.15);
+    }
+    .pricing-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: #7A5700;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 20px;
+      border-radius: 50px;
+      white-space: nowrap;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .pricing-card.featured .plan-name { color: #fff; font-size: 20px; font-weight: 800; margin-bottom: 12px; }
+    .pricing-card.featured .price-old { color: #ffb3b8; font-size: 14px; text-decoration: line-through; }
+    .pricing-card.featured .price-main { color: var(--gold); font-size: 64px; font-weight: 900; line-height: 1; margin: 6px 0; }
+    .pricing-card.featured .price-main sup { font-size: 24px; vertical-align: super; }
+    .pricing-card.featured .price-installments { font-size: 15px; color: rgba(255,255,255,0.85); font-weight: 500; }
+    .pricing-card.featured .price-savings { color: #7fffd4; font-size: 13px; font-weight: 700; margin-top: 6px; }
+    .pricing-card.featured .pricing-items { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; text-align: left; }
+    .pricing-card.featured .pricing-items li { color: rgba(255,255,255,0.95); font-size: 13.5px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
+    .pricing-card.featured .pricing-items li i { color: #7fffd4; width: 17px; height: 17px; flex-shrink: 0; margin-top: 2px; }
+    .pricing-card.featured .btn-primary {
+      background: var(--gold);
+      color: #7A5700;
+      font-size: 18px;
+      font-weight: 800;
+      padding: 18px;
+      border-radius: 50px;
+      box-shadow: 0 6px 20px rgba(253,203,110,0.45);
+      animation: pulse-cta 2s ease-out infinite;
+    }
+    .pricing-card.featured .btn-primary:hover {
+      background: #f5c148;
+      transform: translateY(-2px);
+      animation: none;
+    }
+    .pricing-mock {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      object-fit: contain;
+      margin: 0 auto 16px;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.2));
+      animation: none !important;
+    }
+    .pricing-mock-basic {
+      width: 100%;
+      max-width: 220px;
+      height: auto;
+      object-fit: contain;
+      margin: 0 auto 16px;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.12));
+      animation: none !important;
+    }
+
+    /* ===================== UPSELL MODAL ===================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-card {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 24px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+      position: relative;
+      padding: 32px 28px 24px;
+      text-align: center;
+      transform: scale(0.92) translateY(20px);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 3px solid var(--gold);
+    }
+    .modal-overlay.active .modal-card {
+      transform: scale(1) translateY(0);
+    }
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: #F1F5F9;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 20px;
+      line-height: 1;
+      color: #64748B;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    .modal-close:hover {
+      background: #E2E8F0;
+      color: var(--dark);
+    }
+    .modal-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #EF4444, #DC2626);
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 18px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(239,68,68,0.3);
+    }
+    .modal-headline {
+      font-size: clamp(20px, 4.2vw, 25px);
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .modal-headline span {
+      color: var(--teal);
+    }
+    .modal-sub {
+      font-size: 13.5px;
+      color: var(--body);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .modal-mockup {
+      width: 100%;
+      max-width: 260px;
+      height: auto;
+      margin: 0 auto 14px;
+      display: block;
+      filter: drop-shadow(0 10px 20px rgba(42,157,143,0.22));
+    }
+    .modal-deal-box {
+      background: linear-gradient(135deg, #FFF9EB 0%, #FEF3C7 100%);
+      border: 1.5px dashed #F59E0B;
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+    .modal-deal-box .deal-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: #92400E;
+    }
+    .modal-deal-box .deal-price {
+      font-size: 26px;
+      font-weight: 900;
+      color: #B45309;
+      line-height: 1;
+    }
+    .modal-deal-box .deal-price span {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .btn-popup-pulsing {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, #10B981, #059669);
+      color: #FFFFFF !important;
+      font-size: 17px;
+      font-weight: 900;
+      padding: 18px 24px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      box-shadow: 0 10px 28px rgba(16, 185, 129, 0.45);
+      animation: pulse-btn-upsell 1.8s ease-in-out infinite;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-align: center;
+      text-decoration: none;
+      margin-bottom: 12px;
+      box-sizing: border-box;
+    }
+    .btn-popup-pulsing:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 14px 34px rgba(16, 185, 129, 0.6);
+      color: #FFFFFF !important;
+    }
+    @keyframes pulse-btn-upsell {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4), 0 0 0 0 rgba(16, 185, 129, 0.6);
+      }
+      50% {
+        transform: scale(1.035);
+        box-shadow: 0 12px 30px rgba(16, 185, 129, 0.55), 0 0 0 12px rgba(16, 185, 129, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4), 0 0 0 0 rgba(16, 185, 129, 0);
+      }
+    }
+    .upsell-decline {
+      display: inline-block;
+      font-size: 12.5px;
+      color: #94A3B8;
+      text-decoration: underline;
+      cursor: pointer;
+      transition: color 0.2s ease;
+      background: none;
+      border: none;
+      padding: 6px 12px;
+      font-family: inherit;
+    }
+    .upsell-decline:hover {
+      color: #475569;
+    }
+    .payment-seals {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    .payment-seal {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .payment-seal i { width: 15px; height: 15px; }
+
+    /* ===================== GUARANTEE ===================== */
+    #guarantee { padding: 80px 0; background: var(--white); }
+    .guarantee-inner {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .guarantee-seal {
+      flex-shrink: 0;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 3px solid var(--teal);
+      background: var(--bg-alt);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 12px;
+    }
+    .guarantee-seal .seal-days {
+      font-size: 34px;
+      font-weight: 900;
+      color: var(--teal);
+      line-height: 1;
+    }
+    .guarantee-seal .seal-text {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--dark);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+    .guarantee-content h2 {
+      font-size: clamp(22px, 3vw, 28px);
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 14px;
+    }
+    .guarantee-content p {
+      font-size: 15px;
+      color: var(--body);
+      margin-bottom: 12px;
+      line-height: 1.65;
+    }
+    .guarantee-highlight {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--teal-dark);
+      font-style: italic;
+    }
+
+    /* ===================== FAQ ===================== */
+    #faq { padding: 80px 0; background: var(--bg-alt); }
+    .faq-list { max-width: 740px; margin: 0 auto 40px; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--dark);
+      gap: 16px;
+    }
+    .faq-question .faq-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--teal-light);
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 600;
+      transition: transform 0.3s ease;
+      line-height: 1;
+    }
+    .faq-item.active .faq-question .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .faq-answer-inner {
+      padding: 0 22px 18px;
+      font-size: 14px;
+      color: var(--body);
+      line-height: 1.65;
+    }
+
+    /* ===================== FINAL CTA ===================== */
+    #final-cta {
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      padding: 80px 0;
+      text-align: center;
+    }
+    #final-cta h2 {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 700;
+      color: #fff;
+      max-width: 680px;
+      margin: 0 auto 28px;
+      line-height: 1.25;
+    }
+    #final-cta h2 span { color: var(--gold); }
+
+    /* ===================== FOOTER ===================== */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.7);
+      padding: 40px 24px;
+      text-align: center;
+      font-size: 12.5px;
+      line-height: 1.8;
+    }
+    footer strong { color: rgba(255,255,255,0.9); }
+
+    /* ===================== ANIMATIONS ===================== */
+    @keyframes pulse-cta {
+      0%   { box-shadow: 0 4px 16px rgba(0,0,0,0.15), 0 0 0 0 rgba(255,255,255,0.55); }
+      70%  { box-shadow: 0 4px 16px rgba(0,0,0,0.15), 0 0 0 12px rgba(255,255,255,0); }
+      100% { box-shadow: 0 4px 16px rgba(0,0,0,0.15), 0 0 0 0 rgba(255,255,255,0); }
+    }
+    @keyframes pulse-play {
+      0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.5); }
+      70%  { box-shadow: 0 0 0 18px rgba(255,255,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+    }
+
+    /* ===================== RESPONSIVE & MOBILE ADAPTATION ===================== */
+    @media (max-width: 768px) {
+      .section { padding: 56px 0; }
+      .container { padding: 0 20px; }
+      .categories-grid { grid-template-columns: 1fr; gap: 16px; }
+      .value-stack-inner { flex-direction: column; text-align: center; gap: 28px; }
+      .value-mockup { width: 100%; min-width: unset; max-width: 320px; margin: 0 auto; }
+      .bonus-grid { grid-template-columns: 1fr; gap: 16px; }
+      .guarantee-inner { flex-direction: column; text-align: center; gap: 24px; }
+      .t-arrow { display: none; }
+      .pricing-grid { flex-direction: column; align-items: center; gap: 24px; }
+      .pricing-card.basic, .pricing-card.featured { max-width: 100%; width: 100%; }
+      .pricing-card.featured { transform: none; }
+      .modal-card { max-width: 95%; padding: 28px 20px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      body { font-size: 15px; }
+      .container { padding: 0 16px; }
+      .section { padding: 44px 0; }
+
+      /* Top Urgency Bar */
+      #urgency-bar {
+        font-size: 12.5px;
+        padding: 8px 10px;
+        line-height: 1.35;
+      }
+
+      /* Hero Mobile */
+      #hero { padding: 28px 0 40px; }
+      .hero-tag { font-size: 11px; padding: 5px 14px; margin-bottom: 12px; }
+      #hero h2 {
+        font-size: clamp(21px, 5.8vw, 25px);
+        line-height: 1.3;
+        margin-bottom: 14px;
+      }
+      #hero .hero-sub {
+        font-size: 14px;
+        line-height: 1.55;
+        margin-bottom: 24px;
+      }
+      .hero-mockup {
+        max-width: 92%;
+        margin-bottom: 24px;
+      }
+      .hero-bullets {
+        padding: 16px 14px;
+        gap: 9px;
+        border-radius: 12px;
+      }
+      .hero-bullet {
+        font-size: 12.5px;
+        line-height: 1.4;
+      }
+      .hero-bullet i {
+        width: 16px;
+        height: 16px;
+      }
+      .seals {
+        gap: 10px 14px;
+        justify-content: center;
+      }
+      .seal { font-size: 11.5px; }
+
+      /* Buttons Mobile */
+      .btn {
+        width: 100%;
+        padding: 16px 18px;
+        font-size: 15.5px;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Headings */
+      .section-headline {
+        font-size: clamp(21px, 5.5vw, 26px);
+        margin-bottom: 10px;
+      }
+      .section-sub {
+        font-size: 13.5px;
+        margin-bottom: 32px;
+        line-height: 1.55;
+      }
+
+      /* Category Cards */
+      .cat-card { padding: 22px 18px; }
+
+      /* Value Stack */
+      .value-stack-inner { padding: 24px 16px; border-radius: 16px; }
+      .value-content h2 { font-size: 20px; margin-bottom: 16px; }
+      .check-list li { font-size: 13.5px; gap: 10px; }
+
+      /* Bonus Cards */
+      .bonus-card {
+        padding: 20px 16px;
+        gap: 16px;
+      }
+      .bonus-img {
+        width: 130px;
+        height: auto;
+      }
+      .bonus-content h4 { font-size: 16px; }
+      .bonus-content p { font-size: 13px; }
+
+      /* Recap de Valor Box */
+      #recap-valor { padding: 50px 0; }
+      .recap-table-row { padding: 12px 14px !important; }
+
+      /* Pricing Cards Mobile */
+      #pricing { padding: 56px 0; }
+      .pricing-card.basic {
+        padding: 28px 16px 24px;
+        border-radius: 16px;
+      }
+      .pricing-card.featured {
+        padding: 32px 16px 24px;
+        border-radius: 16px;
+      }
+      .pricing-card.basic .plan-name { font-size: 20px; }
+      .pricing-card.featured .plan-name { font-size: 20px; }
+      .pricing-card.basic .price-main { font-size: 48px; }
+      .pricing-card.featured .price-main { font-size: 52px; }
+      .pricing-card.basic .pricing-items li,
+      .pricing-card.featured .pricing-items li {
+        font-size: 12.5px;
+        gap: 8px;
+      }
+      .pricing-card.basic .pricing-items li.excluded .strike-price,
+      .pricing-card.featured .bonus-tag {
+        font-size: 11px;
+      }
+      .pricing-mock-basic { max-width: 190px; }
+      .pricing-mock { max-width: 260px; }
+
+      /* Payment Seals */
+      .payment-seals { gap: 10px 14px; }
+      .payment-seal { font-size: 11px; }
+
+      /* Guarantee */
+      #guarantee { padding: 56px 0; }
+      .guarantee-seal { width: 110px; height: 110px; padding: 8px; }
+      .guarantee-seal .seal-days { font-size: 28px; }
+      .guarantee-seal .seal-text { font-size: 10px; }
+      .guarantee-content h2 { font-size: 20px; }
+      .guarantee-content p { font-size: 13.5px; }
+
+      /* FAQ */
+      #faq { padding: 56px 0; }
+      .faq-question {
+        padding: 16px 14px;
+        font-size: 14px;
+        gap: 12px;
+      }
+      .faq-answer-inner {
+        padding: 0 14px 16px;
+        font-size: 13.5px;
+      }
+
+      /* Upsell Modal Mobile */
+      .modal-card {
+        padding: 26px 16px 20px;
+        border-radius: 20px;
+        max-height: 90vh;
+      }
+      .modal-headline { font-size: 18px; }
+      .modal-sub { font-size: 12.5px; margin-bottom: 12px; }
+      .modal-mockup { max-width: 200px; margin-bottom: 10px; }
+      .modal-deal-box { padding: 10px 12px; margin-bottom: 16px; }
+      .modal-deal-box .deal-price { font-size: 22px; }
+      .btn-popup-pulsing { font-size: 15px; padding: 15px 16px; }
+      .upsell-decline { font-size: 12px; }
+
+      /* Final CTA & Footer */
+      #final-cta { padding: 56px 0; }
+      #final-cta h2 { font-size: 22px; margin-bottom: 22px; }
+      footer { padding: 32px 16px; font-size: 11.5px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== SEÇÃO 1: FAIXA DE URGÊNCIA ===== -->
+  <div id="urgency-bar">
+    Esta página sairá do ar em: <span id="urgency-countdown" style="font-variant-numeric:tabular-nums; letter-spacing:.04em;">06:59:54</span>
+  </div>
+
+  <!-- ===== SEÇÃO 2: HERO ===== -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-tag">
+        <span class="tag tag-teal">Para psicólogas que atendem crianças — do início da carreira à prática consolidada</span>
+      </div>
+
+      <h2>
+        Entre na sessão infantil com o <span>recurso certo na mão</span> e a <span>condução clara na mente</span>
+      </h2>
+
+      <p class="hero-sub">
+        +160 recursos terapêuticos com objetivos clínicos e instruções de uso para você planejar suas sessões em minutos, engajar a criança e comunicar seus resultados com segurança aos pais.
+      </p>
+
+      <img src="images/acervo-mockup-completo.png" alt="Acervo Clínico Infantil" class="hero-mockup" loading="eager" fetchpriority="high" decoding="async" width="612" height="408" />
+
+      <div class="hero-bullets">
+        <div class="hero-bullet"><i data-lucide="check-circle-2"></i> Acesso imediato após a compra — organize sua próxima sessão hoje mesmo</div>
+        <div class="hero-bullet"><i data-lucide="check-circle-2"></i> Imprime e usa na mesma sessão (ou aplica na tela no atendimento online)</div>
+        <div class="hero-bullet"><i data-lucide="check-circle-2"></i> Organizado por demanda clínica e faixa etária — sem perder horas procurando</div>
+        <div class="hero-bullet"><i data-lucide="check-circle-2"></i> +160 recursos prontos com instruções claras — saiba o objetivo de cada atividade</div>
+        <div class="hero-bullet"><i data-lucide="check-circle-2"></i> Novos recursos todo mês, sem custo extra — amplie seu repertório continuamente</div>
+      </div>
+
+      <div class="hero-cta-block">
+        <a href="#pricing" class="btn btn-primary">
+          &gt;&gt; Ver o acervo por dentro &lt;&lt;
+        </a>
+        <div class="hero-price-note">
+          <span><i data-lucide="shield-check"></i> Garantia de 15 dias</span>
+          <span><i data-lucide="lock"></i> Pagamento seguro</span>
+          <span><i data-lucide="download"></i> Acesso imediato</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEÇÃO 3: PREVIEW / BIBLIOTECA ===== -->
+  <section id="preview">
+    <div class="container" style="text-align:center;">
+      <h2 class="section-headline">Veja como o <span>Acervo Clínico Infantil</span> funciona por dentro</h2>
+      <p class="section-sub">Chega de acumular arquivos soltos e confusos no computador. Você acessa a biblioteca organizada, filtra pela demanda clínica da criança e encontra o recurso exato com orientação de uso para aplicar na sessão.</p>
+
+      <!-- VÍDEO DEMONSTRAÇÃO -->
+      <div style="max-width:360px;margin:0 auto 48px;border-radius:16px;overflow:hidden;box-shadow:0 12px 36px rgba(42,157,143,0.18);position:relative;">
+        <div id="gif-thumb" onclick="playGif()" style="position:absolute;top:0;left:0;width:100%;height:100%;cursor:pointer;z-index:10;">
+          <img src="images/thumbgif.webp" alt="Ver demonstração" loading="lazy" decoding="async" width="360" height="640" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:16px;width:90%;">
+            <div style="width:72px;height:72px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 10px rgba(255,255,255,0.25);animation:pulse-play 2s ease-out infinite;flex-shrink:0;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="#2A9D8F"><polygon points="6,3 20,12 6,21"/></svg>
+            </div>
+            <p style="color:#fff;font-size:clamp(15px,4vw,20px);font-weight:900;text-align:center;line-height:1.25;letter-spacing:0.5px;text-transform:uppercase;margin:0;background:rgba(0,0,0,0.65);padding:12px 20px;border-radius:12px;">Toque para ver o<br>material por dentro</p>
+          </div>
+        </div>
+        <div style="padding:177.78% 0 0 0;position:relative;">
+          <iframe id="gif-iframe" src="https://player.vimeo.com/video/1235978162?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Demonstração por dentro"></iframe>
+        </div>
+      </div>
+
+      <!-- 3 PASSOS -->
+      <div style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:44px;max-width:760px;margin-left:auto;margin-right:auto;">
+        <div class="demo-step-card">
+          <div class="demo-step-num">1</div>
+          <i data-lucide="search" style="color:var(--teal);width:22px;height:22px;"></i>
+          <p style="font-size:14px;font-weight:700;color:var(--dark);margin:0;line-height:1.3;">Escolha a demanda clínica</p>
+          <p style="font-size:12px;color:var(--body);margin:0;line-height:1.4;">Localize em segundos atividades para vínculo, ansiedade, agitação/TDAH ou luto.</p>
+        </div>
+        <div class="demo-step-card">
+          <div class="demo-step-num">2</div>
+          <i data-lucide="layout-grid" style="color:var(--teal);width:22px;height:22px;"></i>
+          <p style="font-size:14px;font-weight:700;color:var(--dark);margin:0;line-height:1.3;">Veja os recursos e objetivos</p>
+          <p style="font-size:12px;color:var(--body);margin:0;line-height:1.4;">Consulte a finalidade terapêutica, a idade indicada e as instruções práticas de uso.</p>
+        </div>
+        <div class="demo-step-card">
+          <div class="demo-step-num">3</div>
+          <i data-lucide="heart-handshake" style="color:var(--teal);width:22px;height:22px;"></i>
+          <p style="font-size:14px;font-weight:700;color:var(--dark);margin:0;line-height:1.3;">Imprima ou use online</p>
+          <p style="font-size:12px;color:var(--body);margin:0;line-height:1.4;">Baixe apenas o que for usar no dia ou compartilhe na tela no atendimento online.</p>
+        </div>
+      </div>
+
+      <a href="#testimonials" class="btn btn-primary btn-center">
+        &gt;&gt; Ver o que outras psicólogas estão dizendo &lt;&lt;
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== SEÇÃO 4: CATEGORIAS (DORES) ===== -->
+  <section id="categories" class="section-white">
+    <div class="container">
+      <h2 class="section-headline">Se você já ficou <span>travada numa sessão</span> ou <span>insegura no planejamento</span>, este acervo é para você</h2>
+      <p class="section-sub">Criado para responder às situações reais da clínica infantil — inclusive aquelas em que a atividade planejada não funciona e você precisa de repertório imediato para conduzir:</p>
+
+      <div class="categories-grid">
+        <div class="category-item"><i data-lucide="message-circle-off"></i> A criança que chega e não quer falar nada</div>
+        <div class="category-item"><i data-lucide="zap"></i> O paciente com muita agitação ou TDAH que não para quieto</div>
+        <div class="category-item"><i data-lucide="heart-crack"></i> A criança que chora na porta e quer a presença da mãe</div>
+        <div class="category-item"><i data-lucide="cloud-rain"></i> A que vivenciou uma perda e tem dificuldade para expressar sentimentos</div>
+        <div class="category-item"><i data-lucide="users"></i> A que está no meio dos conflitos da separação dos pais</div>
+        <div class="category-item"><i data-lucide="flame"></i> A que tem dificuldade de regulação emocional e reage com intensidade</div>
+      </div>
+
+      <div style="text-align:center; margin-top:36px; padding-bottom:8px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="display:block;margin:0 auto;" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7" stroke="var(--teal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEÇÃO 5: BLOCO DE URGÊNCIA / IMPACTO CLÍNICO ===== -->
+  <section id="urgency-block">
+    <div class="container">
+      <h2>Cada sessão sem o recurso e a clareza certa<br /><span>deixa você vulnerável no consultório</span></h2>
+      <p>
+        A criança que não se conecta com a atividade hoje perde o interesse no processo amanhã. E quando falta estrutura para comunicar a finalidade clínica de cada intervenção, surgem as perguntas dos responsáveis que toda psicóloga teme ouvir:
+        <br /><br />
+        <strong style="color:var(--gold);">"Mas ela só brinca na sessão?" &bull; "Quando vamos ver resultado?" &bull; "Em casa continua tudo igual..." &bull; "Não era para isso já ter melhorado?"</strong>
+        <br /><br />
+        Você não precisa gastar uma fortuna em jogos físicos nem perder horas da sua noite procurando PDFs gratuitos e rasos na internet. Você merece entrar em cada atendimento tranquila, confiando no seu raciocínio clínico e sabendo exatamente como explicar a evolução do caso para a família.
+      </p>
+      <a href="#pricing" class="btn btn-white" style="margin-bottom:24px;">
+        &gt;&gt; Quero estrutura nas minhas sessões &lt;&lt;
+      </a>
+      <div class="seals">
+        <div class="seal"><i data-lucide="zap"></i> Acesso imediato</div>
+        <div class="seal"><i data-lucide="shield-check"></i> Garantia de 15 dias</div>
+        <div class="seal"><i data-lucide="lock"></i> Pagamento seguro</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEÇÃO 6: DEPOIMENTOS ===== -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-label"><span class="tag tag-teal">O que estão dizendo</span></div>
+      <h2 class="section-headline">Psicólogas que já usam o Acervo Clínico Infantil</h2>
+      <p class="section-sub">Quem já implementou na rotina clínica conta como ganhou tempo no planejamento e segurança nos atendimentos.</p>
+
+      <div class="t-carousel-wrap">
+        <button class="t-arrow t-prev" aria-label="Anterior">&#8592;</button>
+        <div class="t-track-wrapper">
+          <div class="t-track">
+            <div class="t-slide">
+              <img src="images/dep1.webp" alt="Depoimento 1" class="t-img" loading="lazy" decoding="async" width="480" height="640">
+            </div>
+            <div class="t-slide">
+              <img src="images/dep4.webp" alt="Depoimento 4" class="t-img" loading="lazy" decoding="async" width="480" height="640">
+            </div>
+            <div class="t-slide">
+              <img src="images/dep2.webp" alt="Depoimento 2" class="t-img" loading="lazy" decoding="async" width="480" height="640">
+            </div>
+          </div>
+        </div>
+        <button class="t-arrow t-next" aria-label="Próximo">&#8594;</button>
+      </div>
+      <div class="t-dots">
+        <button class="t-dot active"></button>
+        <button class="t-dot"></button>
+        <button class="t-dot"></button>
+      </div>
+
+      <div style="text-align:center; padding: 24px 0 0;">
+        <p style="font-size:15px; color:var(--body); max-width:520px; margin:0 auto 10px; line-height:1.6;">
+          Agora veja exatamente tudo o que está incluído no seu acesso ao <strong>Acervo Clínico Infantil Completo</strong>.
+        </p>
+        <p style="font-size:13px; font-weight:600; color:var(--muted); margin:0; display:inline-flex; align-items:center; gap:6px;">
+          <i data-lucide="arrow-down-circle" style="width:16px;height:16px;color:var(--teal);"></i>
+          O que eu recebo
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEÇÃO 7: ENTREGÁVEIS + 5 BÔNUS ===== -->
+  <section id="value-stack">
+    <div class="container">
+      <h2 class="section-headline">Tudo o que você <span>vai receber</span></h2>
+
+      <div class="value-stack-inner">
+        <img src="images/acervo-mockup-completo.png" alt="Acervo Clínico Infantil" class="value-mockup" loading="lazy" decoding="async" width="612" height="408" />
+
+        <div class="value-content">
+          <h2>ACERVO CLÍNICO INFANTIL<br /><span>+160 recursos terapêuticos organizados</span></h2>
+          <ul class="check-list">
+            <li><i data-lucide="check-circle-2"></i> Cartas, baralhos, dominós e termômetros de emoções com visual atrativo para alfabetização e regulação emocional.</li>
+            <li><i data-lucide="check-circle-2"></i> Atividades projetivas e expressivas organizadas por demanda clínica com objetivos e instruções claras de condução.</li>
+            <li><i data-lucide="check-circle-2"></i> Dinâmicas de vínculo e acolhimento específicas para primeiras sessões e crianças resistentes ou silenciosas.</li>
+            <li><i data-lucide="check-circle-2"></i> Fichas de manejo comportamental e rotina prontas para imprimir, usar na sessão e adaptar à realidade de cada criança.</li>
+            <li><i data-lucide="check-circle-2"></i> Recursos e atividades de psicoeducação infantil com fácil compreensão para diferentes faixas etárias e abordagens.</li>
+            <li><i data-lucide="refresh-cw"></i> Atualizações mensais com novos recursos — amplie sua biblioteca todos os meses sem pagar nada a mais.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 5 BÔNUS EXCLUSIVOS -->
+      <div class="bonus-transition">
+        <p>E não para por aí. No Acervo Clínico Infantil Completo, você ainda recebe <strong>5 bônus exclusivos</strong> que organizam seu planejamento e dão o suporte exato para conversar com os pais com total autoridade profissional:</p>
+        <span class="tag tag-peach">5 BÔNUS EXCLUSIVOS</span>
+      </div>
+
+      <div class="bonus-grid">
+        <div class="bonus-card">
+          <img class="bonus-img" src="images/bonus fichas.webp" alt="Fichas de Anamnese" loading="lazy" decoding="async" width="160" height="220" />
+          <div class="bonus-body">
+            <h4>Fichas de Anamnese Infantil Estruturadas</h4>
+            <p>Modelos prontos e detalhados para conduzir a primeira entrevista com os pais, mapear a demanda clínica e transmitir segurança desde o primeiro contato.</p>
+            <div class="bonus-price"><span class="old">De R$ 27,00</span><span class="free">por GRÁTIS</span></div>
+          </div>
+        </div>
+
+        <div class="bonus-card">
+          <img class="bonus-img" src="images/bonus roteiro de devolutica.webp" alt="Roteiro de Devolutiva" loading="lazy" decoding="async" width="160" height="220" />
+          <div class="bonus-body">
+            <h4>Roteiro de Devolutiva para Pais</h4>
+            <p>Scripts e estruturas práticas para comunicar os objetivos terapêuticos e o andamento do atendimento com clareza — sem travar quando for questionada pelos responsáveis.</p>
+            <div class="bonus-price"><span class="old">De R$ 19,00</span><span class="free">por GRÁTIS</span></div>
+          </div>
+        </div>
+
+        <div class="bonus-card">
+          <img class="bonus-img" src="images/bonus checklist de plan.webp" alt="Checklist de Planejamento" loading="lazy" decoding="async" width="160" height="220" />
+          <div class="bonus-body">
+            <h4>Checklist de Planejamento de Sessão</h4>
+            <p>Passo a passo rápido para organizar seus objetivos, selecionar o material adequado em minutos e ter sempre um Plano B estruturado antes da criança entrar na sala.</p>
+            <div class="bonus-price"><span class="old">De R$ 17,00</span><span class="free">por GRÁTIS</span></div>
+          </div>
+        </div>
+
+        <div class="bonus-card">
+          <img class="bonus-img" src="images/bonus guia do manejo.webp" alt="Guia de Manejo" loading="lazy" decoding="async" width="160" height="220" />
+          <div class="bonus-body">
+            <h4>Guia de Manejo com Pais Difíceis</h4>
+            <p>Estratégias clínicas para lidar com pais resistentes, cobradores de resultados rápidos ou ausentes, alinhando expectativas quando dizem que "em casa continua igual".</p>
+            <div class="bonus-price"><span class="old">De R$ 17,00</span><span class="free">por GRÁTIS</span></div>
+          </div>
+        </div>
+
+        <div class="bonus-card" style="grid-column: 1 / -1;">
+          <img class="bonus-img" src="images/bonus kit de pscicoeducacao.webp" alt="Kit de Psicoeducação" loading="lazy" decoding="async" width="160" height="220" />
+          <div class="bonus-body">
+            <h4>Kit de Psicoeducação Visual para Pais</h4>
+            <p>Materiais ilustrados e didáticos para explicar ansiedade, TDAH, regulação emocional e a função clínica do brincar, tornando a família parceira do processo terapêutico.</p>
+            <div class="bonus-price"><span class="old">De R$ 17,00</span><span class="free">por GRÁTIS</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:40px;">
+        <p style="font-size:15px; color:var(--body); max-width:460px; margin:0 auto 16px; line-height:1.6;">
+          Veja quanto tudo isso custaria separado
+        </p>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="display:block;margin:0 auto;opacity:0.45;" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7" stroke="var(--teal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEÇÃO 8: ANCORAGEM DE VALOR ===== -->
+  <section id="recap-valor">
+    <div class="container">
+      <h2 class="section-headline" style="margin-bottom:12px;">Totalizando mais de 300 materiais por <span>uma fração do que você gastaria comprando um único jogo físico</span></h2>
+      <p class="section-sub">Ao invés de gastar caro acumulando jogos físicos ou perder horas tentando criar materiais do zero, você garante uma biblioteca inteira organizada e pronta para consulta imediata.</p>
+
+      <!-- TABELA DE VALOR -->
+      <div style="max-width:620px;margin:0 auto 40px;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.07);background:var(--white);">
+        <div style="display:grid;grid-template-columns:1fr auto;background:var(--teal);padding:14px 20px;">
+          <span style="font-size:13px;font-weight:700;color:#fff;">O que você recebe</span>
+          <span style="font-size:13px;font-weight:700;color:#fff;">Valor separado</span>
+        </div>
+        <div>
+          <div style="display:grid;grid-template-columns:1fr auto;padding:14px 20px;border-bottom:1px solid #f0ede8;align-items:center;">
+            <span style="font-size:14px;color:var(--dark);font-weight:500;">+160 Recursos Terapêuticos do Acervo Clínico Infantil</span>
+            <span style="font-size:14px;color:var(--red);font-weight:700;text-decoration:line-through;white-space:nowrap;">R$ 79,90</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;padding:14px 20px;border-bottom:1px solid #f0ede8;align-items:center;">
+            <span style="font-size:14px;color:var(--dark);font-weight:500;">Fichas de Anamnese Infantil Estruturadas</span>
+            <span style="font-size:14px;color:var(--red);font-weight:700;text-decoration:line-through;white-space:nowrap;">R$ 27,00</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;padding:14px 20px;border-bottom:1px solid #f0ede8;align-items:center;">
+            <span style="font-size:14px;color:var(--dark);font-weight:500;">Roteiro de Devolutiva para Pais</span>
+            <span style="font-size:14px;color:var(--red);font-weight:700;text-decoration:line-through;white-space:nowrap;">R$ 19,00</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;padding:14px 20px;border-bottom:1px solid #f0ede8;align-items:center;">
+            <span style="font-size:14px;color:var(--dark);font-weight:500;">Checklist de Planejamento de Sessão</span>
+            <span style="font-size:14px;color:var(--red);font-weight:700;text-decoration:line-through;white-space:nowrap;">R$ 17,00</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;padding:14px 20px;border-bottom:1px solid #f0ede8;align-items:center;">
+            <span style="font-size:14px;color:var(--dark);font-weight:500;">Guia de Manejo com Pais Difíceis</span>
+            <span style="font-size:14px;color:var(--red);font-weight:700;text-decoration:line-through;white-space:nowrap;">R$ 17,00</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr auto;padding:14px 20px;align-items:center;">
+            <span style="font-size:14px;color:var(--dark);font-weight:500;">Kit de Psicoeducação Visual para Pais</span>
+            <span style="font-size:14px;color:var(--red);font-weight:700;text-decoration:line-through;white-space:nowrap;">R$ 17,00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOCO DE FECHAMENTO -->
+      <div style="max-width:560px;margin:0 auto;background:var(--white);border-radius:20px;padding:32px 28px;box-shadow:0 8px 32px rgba(42,157,143,0.12);text-align:center;">
+        <p style="font-size:15px;font-weight:600;color:var(--muted);margin-bottom:8px;">Você pagaria:</p>
+        <p style="font-size:36px;font-weight:900;color:var(--red);text-decoration:line-through;line-height:1;margin-bottom:16px;">R$ 176,90</p>
+        <p style="font-size:15px;color:var(--body);font-weight:500;line-height:1.5;margin-bottom:28px;">Mas hoje você pode garantir o <strong>Acervo Clínico Infantil Completo</strong> com uma condição especial disponível nesta página.</p>
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="display:block;margin:0 auto;" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7" stroke="var(--teal)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEÇÃO 9: OFERTA / PRICING ===== -->
+  <section id="pricing">
+    <div class="container">
+      <div class="pricing-header">
+        <span class="tag" style="margin-bottom:16px; display:inline-block; background:#FDCB6E; color:#7A5700; letter-spacing:.08em; font-weight:800; padding:8px 22px;">OFERTA VÁLIDA ATÉ: <span id="countdown-timer" style="font-variant-numeric:tabular-nums;">06:59:54</span></span>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- CARD 1: ACERVO BÁSICO -->
+        <div class="pricing-card basic">
+          <p class="plan-name">Acervo basico</p>
+          <img src="images/acervo-mockup-basico.png" alt="Acervo Clínico Infantil Básico" class="pricing-mock-basic" loading="lazy" decoding="async" width="669" height="373" />
+          <p class="plan-sub">O sistema básico de recursos lúdicos e ferramentas clínicas para transformar suas sessões</p>
+          
+          <div class="price-block">
+            <p class="price-main"><sup>R$</sup>17<sup>,90</sup></p>
+            <p class="price-meta">pagamento único &bull; acesso imediato</p>
+          </div>
+
+          <a href="#checkout-basico" class="btn btn-outline btn-open-upsell">
+            &gt;&gt; Quero o Acervo basico &lt;&lt;
+          </a>
+
+          <ul class="pricing-items">
+            <li class="included"><i data-lucide="check-circle-2"></i> <span>+80 recursos terapêuticos lúdicos com instruções de uso</span></li>
+            <li class="included"><i data-lucide="check-circle-2"></i> <span>Organizados por demanda clínica e faixa etária</span></li>
+            <li class="included"><i data-lucide="check-circle-2"></i> <span>Biblioteca digital intuitiva com busca rápida e pastas organizadas</span></li>
+            <li class="included"><i data-lucide="check-circle-2"></i> <span>Acesso vitalício</span></li>
+            <li class="excluded"><i data-lucide="x"></i> <span class="strikethrough-red">atualizações mensais futuras sem custo</span></li>
+            <li class="excluded"><i data-lucide="x"></i> <span class="strikethrough-red">Fichas de Anamnese Infantil Estruturadas</span> <span class="strike-price">R$ 27,00</span></li>
+            <li class="excluded"><i data-lucide="x"></i> <span class="strikethrough-red">Roteiro de Devolutiva para Pais</span> <span class="strike-price">R$ 19,00</span></li>
+            <li class="excluded"><i data-lucide="x"></i> <span class="strikethrough-red">Checklist de Planejamento de Sessão</span> <span class="strike-price">R$ 17,00</span></li>
+            <li class="excluded"><i data-lucide="x"></i> <span class="strikethrough-red">Guia de Manejo com Pais Difíceis</span> <span class="strike-price">R$ 17,00</span></li>
+            <li class="excluded"><i data-lucide="x"></i> <span class="strikethrough-red">Kit de Psicoeducação Visual para Pais</span> <span class="strike-price">R$ 17,00</span></li>
+          </ul>
+        </div>
+
+        <!-- CARD 2: ACERVO COMPLETO (DESTAQUE) -->
+        <div class="pricing-card featured">
+          <span class="pricing-badge">Acervo Completo</span>
+          <p class="plan-name">Acervo Clínico Infantil Completo</p>
+          <img src="images/acervo-mockup-completo.png" alt="Acervo Clínico Infantil Completo" class="pricing-mock" loading="lazy" decoding="async" width="612" height="408" />
+          <div class="price-block">
+            <p style="font-size:13.5px; font-weight:600; color:rgba(255,255,255,0.85); margin-bottom:8px; line-height:1.4;">O sistema completo de recursos lúdicos e ferramentas clínicas para transformar suas sessões</p>
+            <p class="price-old">De R$ 176,90 por:</p>
+            <p class="price-main"><sup>R$</sup>37<sup>,90</sup></p>
+            <p class="price-installments">Ou 6x de R$ 7,45</p>
+            <p style="font-size:12px; color:rgba(255,255,255,0.7); margin-top:3px; margin-bottom:6px;">pagamento único &bull; acesso imediato</p>
+            <p class="price-savings">Você economiza R$ 139,00</p>
+          </div>
+          <a href="#checkout" class="btn btn-primary btn-full" style="margin-bottom:24px;">
+            &gt;&gt; Quero o Acervo Completo &lt;&lt;
+          </a>
+          <ul class="pricing-items">
+            <li><i data-lucide="check-circle-2"></i> +160 recursos terapêuticos lúdicos com instruções de uso</li>
+            <li><i data-lucide="check-circle-2"></i> Organizados por demanda clínica e faixa etária</li>
+            <li><i data-lucide="check-circle-2"></i> Biblioteca digital intuitiva com busca rápida e pastas organizadas</li>
+            <li><i data-lucide="check-circle-2"></i> Acesso vitalício + atualizações mensais futuras sem custo</li>
+            <li class="bonus-item"><i data-lucide="gift"></i> Fichas de Anamnese Infantil Estruturadas <span class="bonus-tag" style="color:#ffb3b8;text-decoration:line-through;margin-left:auto;">R$ 27,00</span></li>
+            <li class="bonus-item"><i data-lucide="gift"></i> Roteiro de Devolutiva para Pais <span class="bonus-tag" style="color:#ffb3b8;text-decoration:line-through;margin-left:auto;">R$ 19,00</span></li>
+            <li class="bonus-item"><i data-lucide="gift"></i> Checklist de Planejamento de Sessão <span class="bonus-tag" style="color:#ffb3b8;text-decoration:line-through;margin-left:auto;">R$ 17,00</span></li>
+            <li class="bonus-item"><i data-lucide="gift"></i> Guia de Manejo com Pais Difíceis <span class="bonus-tag" style="color:#ffb3b8;text-decoration:line-through;margin-left:auto;">R$ 17,00</span></li>
+            <li class="bonus-item"><i data-lucide="gift"></i> Kit de Psicoeducação Visual para Pais <span class="bonus-tag" style="color:#ffb3b8;text-decoration:line-through;margin-left:auto;">R$ 17,00</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="payment-seals">
+        <div class="payment-seal"><i data-lucide="credit-card"></i> Cartão de crédito</div>
+        <div class="payment-seal"><i data-lucide="qr-code"></i> Pix</div>
+        <div class="payment-seal"><i data-lucide="file-text"></i> Boleto</div>
+        <div class="payment-seal"><i data-lucide="shield-check"></i> Compra 100% segura</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEÇÃO 10: GARANTIA ===== -->
+  <section id="guarantee" class="section-white">
+    <div class="container">
+      <div class="guarantee-inner">
+        <div class="guarantee-seal">
+          <span class="seal-days">15</span>
+          <span class="seal-text">dias de<br />garantia</span>
+        </div>
+        <div class="guarantee-content">
+          <h2>Compra sem risco: teste na prática por 15 dias</h2>
+          <p>
+            Sabemos que muitas psicólogas já se frustraram comprando pacotes digitais desorganizados ou que não cumpriam o que prometiam. Por isso, você tem 15 dias inteiros para acessar o Acervo Clínico Infantil, explorar as pastas, ler as instruções clínicas e aplicar os recursos nas suas sessões. Se por qualquer motivo você não se sentir mais segura e organizada, basta solicitar o reembolso na Hotmart e devolvemos 100% do seu dinheiro. Sem burocracia, sem perguntas.
+          </p>
+          <p class="guarantee-highlight">
+            O risco é todo nosso. A tranquilidade nas sessões é toda sua.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEÇÃO 11: FAQ ===== -->
+  <section id="faq" class="section-alt">
+    <div class="container">
+      <h2 class="section-headline">Ainda tem alguma dúvida?</h2>
+      <p class="section-sub">Tire suas dúvidas antes de decidir.</p>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">
+            Como acesso o material depois da compra?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Assim que o pagamento for confirmado, você recebe um e-mail com o link de acesso direto na area de membros. É rápido e fácil.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Em qual formato vem o kit?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Todos os materiais são em PDF, organizados em pastas por categoria. Você baixa tudo de uma vez ou vai abrindo conforme precisar.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Posso imprimir quantas vezes quiser?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Sim. O uso é pessoal. Você pode imprimir pra usar no seu consultório sempre que precisar.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Preciso ter experiência em psicoterapia infantil para usar?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Não. O kit foi criado justamente pra quem está começando no infantil. Os recursos são prontos pra usar, sem precisar de formação específica pra aplicar.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Funciona para crianças muito resistentes?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Sim. Tem recursos específicos para criar vínculo com crianças fechadas, ansiosas ou que não querem falar. A abordagem lúdica ajuda a quebrar o gelo de um jeito natural.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Serve para atendimento online também?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Serve. Você pode compartilhar os materiais na tela durante a sessão online. Alguns recursos funcionam melhor presencialmente, mas a maioria se adapta bem.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Como funciona a garantia?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Você tem 15 dias a partir da compra pra pedir reembolso. Basta entrar em contato pela plataforma de compra. O dinheiro volta integralmente, sem perguntas.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            O pagamento é seguro?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Sim. A compra é feita pela maior plataforma de infoprodutos do Brasil. Aceita cartão de crédito, boleto e Pix.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#pricing" class="btn btn-primary btn-center">
+        &gt;&gt; Quero meu acervo agora &lt;&lt;
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== SEÇÃO 12: CTA FINAL ===== -->
+  <section id="final-cta">
+    <div class="container">
+      <h2>
+        Sua próxima sessão infantil<br />
+        <span>pode ser conduzida com total segurança</span>
+      </h2>
+      <a href="#pricing" class="btn btn-white" style="font-size:17px; padding:18px 48px;">
+        &gt;&gt; Quero meu acervo agora &lt;&lt;
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== MODAL UPSELL OFERTA COMPLETA ===== -->
+  <div id="upsell-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="upsell-title">
+    <div class="modal-card">
+      <button class="modal-close" id="modal-close-btn" aria-label="Fechar">&times;</button>
+      <span class="modal-badge">🔥 OFERTA EXCLUSIVA DESTA PÁGINA</span>
+      <h3 class="modal-headline" id="upsell-title">Espere! Leve o <span>Acervo Completo</span> por apenas <span>R$ 9,90 a mais!</span></h3>
+      <p class="modal-sub">
+        Por apenas mais <strong>R$ 9,90</strong> você desbloqueia o dobro de materiais (+160 recursos), <strong>atualizações mensais futuras sem custo</strong> e todos os <strong>5 bônus exclusivos</strong>!
+      </p>
+
+      <img src="images/acervo-mockup-completo.png" alt="Acervo Clínico Infantil Completo" class="modal-mockup" loading="lazy" decoding="async" width="612" height="408" />
+
+      <div class="modal-deal-box">
+        <span class="deal-text">Upgrade exclusivo para você agora:</span>
+        <div class="deal-price">+ R$ 9,90 <span>(Apenas R$ 27,80 no total)</span></div>
+      </div>
+
+      <a href="#checkout" id="btn-upsell-complete" class="btn-popup-pulsing">
+        QUERO O ACESSO COMPLETO
+      </a>
+
+      <div>
+        <button type="button" id="btn-upsell-decline" class="upsell-decline">
+          não, quero o acervo simples
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SEÇÃO 13: FOOTER ===== -->
+  <footer>
+    <p><strong>acervo clinico infantil todos os direitos reservados</strong></p>
+    <p style="margin-top:8px; max-width:640px; margin-left:auto; margin-right:auto;">
+      Este produto é um kit digital educativo para psicólogas. Não substitui formação clínica, supervisão ou orientação profissional. Os resultados podem variar de acordo com cada caso e contexto clínico.
+    </p>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script>
+    // Inicializar ícones Lucide
+    lucide.createIcons();
+
+    // Player de vídeo Vimeo
+    function playGif() {
+      var thumb = document.getElementById('gif-thumb');
+      var iframe = document.getElementById('gif-iframe');
+      if (thumb) thumb.style.display = 'none';
+      if (iframe && window.Vimeo) {
+        var player = new Vimeo.Player(iframe);
+        player.play();
+      }
+    }
+
+    // ===== Carrossel de Depoimentos =====
+    (function() {
+      var track = document.querySelector('.t-track');
+      var dots  = document.querySelectorAll('.t-dot');
+      var prev  = document.querySelector('.t-prev');
+      var next  = document.querySelector('.t-next');
+      if (!track) return;
+      var total = document.querySelectorAll('.t-slide').length;
+      var cur = 0, timer, startX = 0;
+
+      function goTo(idx) {
+        cur = (idx + total) % total;
+        track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+        dots.forEach(function(d, i) { d.classList.toggle('active', i === cur); });
+      }
+      function resetAuto() { clearInterval(timer); timer = setInterval(function() { goTo(cur + 1); }, 5000); }
+
+      if (prev) prev.addEventListener('click', function() { goTo(cur - 1); resetAuto(); });
+      if (next) next.addEventListener('click', function() { goTo(cur + 1); resetAuto(); });
+      dots.forEach(function(d, i) { d.addEventListener('click', function() { goTo(i); resetAuto(); }); });
+
+      track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive:true});
+      track.addEventListener('touchend', function(e) {
+        var diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) { goTo(cur + (diff > 0 ? 1 : -1)); resetAuto(); }
+      });
+
+      resetAuto();
+    })();
+
+    // ===== Cronômetros Funcionais e Sincronizados =====
+    (function() {
+      var targets = [
+        document.getElementById('countdown-timer'),
+        document.getElementById('urgency-countdown')
+      ];
+
+      var STORAGE_KEY = 'aci_timer_end';
+      var DEFAULT_MS = (6 * 3600 + 59 * 60 + 54) * 1000;
+      var endTime;
+
+      try {
+        var stored = sessionStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          endTime = parseInt(stored, 10);
+        }
+        if (!endTime || isNaN(endTime) || endTime <= Date.now()) {
+          endTime = Date.now() + DEFAULT_MS;
+          sessionStorage.setItem(STORAGE_KEY, endTime.toString());
+        }
+      } catch (e) {
+        endTime = Date.now() + DEFAULT_MS;
+      }
+
+      function tick() {
+        var now = Date.now();
+        var diff = Math.max(0, endTime - now);
+
+        if (diff === 0) {
+          endTime = Date.now() + (23 * 60 * 1000);
+          try { sessionStorage.setItem(STORAGE_KEY, endTime.toString()); } catch(e){}
+          diff = 23 * 60 * 1000;
+        }
+
+        var h = Math.floor(diff / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        var s = Math.floor((diff % 60000) / 1000);
+
+        var str = String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+        targets.forEach(function(el) { if (el) el.textContent = str; });
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    })();
+
+    // ===== FAQ Accordion =====
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const answer = item.querySelector('.faq-answer');
+        const isActive = item.classList.contains('active');
+
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('active');
+          const a = i.querySelector('.faq-answer');
+          if (a) a.style.maxHeight = null;
+        });
+
+        if (!isActive) {
+          item.classList.add('active');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // ===== Modal Upsell Acervo Completo =====
+    (function() {
+      var modal = document.getElementById('upsell-modal');
+      var openBtns = document.querySelectorAll('.btn-open-upsell');
+      var closeBtn = document.getElementById('modal-close-btn');
+      var declineBtn = document.getElementById('btn-upsell-decline');
+      var completeBtn = document.getElementById('btn-upsell-complete');
+
+      if (!modal) return;
+
+      function openModal(e) {
+        if (e) e.preventDefault();
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      openBtns.forEach(function(btn) {
+        btn.addEventListener('click', openModal);
+      });
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+      }
+
+      if (declineBtn) {
+        declineBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          closeModal();
+          window.location.href = '#checkout-basico';
+        });
+      }
+
+      if (completeBtn) {
+        completeBtn.addEventListener('click', function() {
+          closeModal();
+        });
+      }
+
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          closeModal();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
