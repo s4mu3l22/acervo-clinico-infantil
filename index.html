@@ -905,33 +905,17 @@
       max-width: 800px;
       margin: 0 auto;
     }
-    .guarantee-seal {
+    .guarantee-seal-img {
       flex-shrink: 0;
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      border: 3px solid var(--teal);
-      background: var(--bg-alt);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 12px;
+      width: 170px;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 24px rgba(212,160,23,0.3));
+      transition: transform 0.3s ease;
     }
-    .guarantee-seal .seal-days {
-      font-size: 34px;
-      font-weight: 900;
-      color: var(--teal);
-      line-height: 1;
-    }
-    .guarantee-seal .seal-text {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--dark);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-top: 4px;
+    .guarantee-seal-img:hover {
+      transform: scale(1.05);
     }
     .guarantee-content h2 {
       font-size: clamp(22px, 3vw, 28px);
@@ -1186,9 +1170,7 @@
 
       /* Guarantee */
       #guarantee { padding: 56px 0; }
-      .guarantee-seal { width: 110px; height: 110px; padding: 8px; }
-      .guarantee-seal .seal-days { font-size: 28px; }
-      .guarantee-seal .seal-text { font-size: 10px; }
+      .guarantee-seal-img { width: 140px; margin: 0 auto; }
       .guarantee-content h2 { font-size: 20px; }
       .guarantee-content p { font-size: 13.5px; }
 
@@ -1279,7 +1261,7 @@
       <!-- VÍDEO DEMONSTRAÇÃO -->
       <div style="max-width:360px;margin:0 auto 48px;border-radius:16px;overflow:hidden;box-shadow:0 12px 36px rgba(42,157,143,0.18);position:relative;">
         <div style="padding:177.78% 0 0 0;position:relative;">
-          <iframe id="gif-iframe" src="https://player.vimeo.com/video/1235978162?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Demonstração por dentro"></iframe>
+          <iframe id="video-iframe" src="https://www.youtube.com/embed/8tt9Ke_LwY8?rel=0&amp;modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" title="Demonstração por dentro"></iframe>
         </div>
       </div>
 
@@ -1609,10 +1591,7 @@
   <section id="guarantee" class="section-white">
     <div class="container">
       <div class="guarantee-inner">
-        <div class="guarantee-seal">
-          <span class="seal-days">15</span>
-          <span class="seal-text">dias de<br />garantia</span>
-        </div>
+        <img src="images/selo-garantia-15-dias.png" alt="Selo Risco Zero - Garantia de 15 Dias" class="guarantee-seal-img" loading="lazy" decoding="async" width="340" height="296" />
         <div class="guarantee-content">
           <h2>Compra sem risco: teste na prática por 15 dias</h2>
           <p>
@@ -1787,22 +1766,10 @@
   </footer>
 
   <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="https://player.vimeo.com/api/player.js"></script>
   <script src="tracker.js" defer></script>
   <script>
     // Inicializar ícones Lucide
     lucide.createIcons();
-
-    // Player de vídeo Vimeo
-    function playGif() {
-      var thumb = document.getElementById('gif-thumb');
-      var iframe = document.getElementById('gif-iframe');
-      if (thumb) thumb.style.display = 'none';
-      if (iframe && window.Vimeo) {
-        var player = new Vimeo.Player(iframe);
-        player.play();
-      }
-    }
 
     // ===== Carrossel de Depoimentos =====
     (function() {
